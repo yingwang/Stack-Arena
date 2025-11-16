@@ -4,7 +4,7 @@ import android.graphics.Color;
 
 public class TetrisPiece {
     public enum PieceType {
-        I, O, T, S, Z, J, L
+        A, B, C, D, E, F, G, H
     }
 
     private PieceType type;
@@ -22,45 +22,78 @@ public class TetrisPiece {
 
     private void initializeShape() {
         switch (type) {
-            case I:
-                shape = new int[][]{
-                    {1, 1, 1, 1}
-                };
-                break;
-            case O:
-                shape = new int[][]{
-                    {1, 1},
-                    {1, 1}
-                };
-                break;
-            case T:
-                shape = new int[][]{
-                    {0, 1, 0},
-                    {1, 1, 1}
-                };
-                break;
-            case S:
-                shape = new int[][]{
-                    {0, 1, 1},
-                    {1, 1, 0}
-                };
-                break;
-            case Z:
+            case A:
+                // XX
+                //  X
+                //  X
+                //  X
                 shape = new int[][]{
                     {1, 1, 0},
-                    {0, 1, 1}
+                    {0, 1, 0},
+                    {0, 1, 0},
+                    {0, 1, 0}
                 };
                 break;
-            case J:
+            case B:
+                // XXX
+                // X X
                 shape = new int[][]{
-                    {1, 0, 0},
-                    {1, 1, 1}
+                    {1, 1, 1},
+                    {1, 0, 1}
                 };
                 break;
-            case L:
+            case C:
+                // XX
+                // XX
+                //  X
+                shape = new int[][]{
+                    {1, 1, 0},
+                    {1, 1, 0},
+                    {0, 1, 0}
+                };
+                break;
+            case D:
+                //   X
+                // XXX
+                // X
                 shape = new int[][]{
                     {0, 0, 1},
-                    {1, 1, 1}
+                    {1, 1, 1},
+                    {1, 0, 0}
+                };
+                break;
+            case E:
+                // XXXX
+                //  X
+                shape = new int[][]{
+                    {1, 1, 1, 1},
+                    {0, 1, 0, 0}
+                };
+                break;
+            case F:
+                //  X
+                // XXX
+                //  X
+                shape = new int[][]{
+                    {0, 1, 0},
+                    {1, 1, 1},
+                    {0, 1, 0}
+                };
+                break;
+            case G:
+                //  XX
+                // XX
+                //  X
+                shape = new int[][]{
+                    {0, 1, 1},
+                    {1, 1, 0},
+                    {0, 1, 0}
+                };
+                break;
+            case H:
+                // XXXXX
+                shape = new int[][]{
+                    {1, 1, 1, 1, 1}
                 };
                 break;
         }
@@ -68,26 +101,29 @@ public class TetrisPiece {
 
     private void initializeColor() {
         switch (type) {
-            case I:
+            case A:
                 color = Color.CYAN;
                 break;
-            case O:
+            case B:
                 color = Color.YELLOW;
                 break;
-            case T:
+            case C:
                 color = Color.MAGENTA;
                 break;
-            case S:
+            case D:
                 color = Color.GREEN;
                 break;
-            case Z:
+            case E:
                 color = Color.RED;
                 break;
-            case J:
+            case F:
                 color = Color.BLUE;
                 break;
-            case L:
+            case G:
                 color = Color.rgb(255, 165, 0); // Orange
+                break;
+            case H:
+                color = Color.rgb(255, 20, 147); // Deep Pink
                 break;
         }
     }
