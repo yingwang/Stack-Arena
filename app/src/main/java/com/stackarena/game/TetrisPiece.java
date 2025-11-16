@@ -32,53 +32,57 @@ public class TetrisPiece {
                 };
                 break;
             case B:
-                // XXX
-                // 3-block line
+                // XX
+                // 2-block line (small)
                 shape = new int[][]{
-                    {1, 1, 1}
+                    {1, 1}
                 };
                 break;
             case C:
+                // X
                 // XX
-                // XX
-                // 4-block square
+                // 3-block corner shape
                 shape = new int[][]{
-                    {1, 1},
+                    {1, 0},
                     {1, 1}
                 };
                 break;
             case D:
-                //  X
-                // XXX
-                // 4-block T shape
+                // X
+                // X
+                // XX
+                // 4-block tall L shape
                 shape = new int[][]{
-                    {0, 1, 0},
-                    {1, 1, 1}
+                    {1, 0},
+                    {1, 0},
+                    {1, 1}
                 };
                 break;
             case E:
+                //  X
                 // XX
-                //  XX
-                // 4-block Z shape
+                // X
+                // 4-block zigzag variant
                 shape = new int[][]{
-                    {1, 1, 0},
-                    {0, 1, 1}
+                    {0, 1},
+                    {1, 1},
+                    {1, 0}
                 };
                 break;
             case F:
-                // X
                 // XXX
-                // 4-block L shape
+                //  X
+                // 4-block inverted T
                 shape = new int[][]{
-                    {1, 0, 0},
-                    {1, 1, 1}
+                    {1, 1, 1},
+                    {0, 1, 0}
                 };
                 break;
             case G:
-                // XXXX
-                // 4-block line
+                // XXXXX
+                // 5-block line
                 shape = new int[][]{
-                    {1, 1, 1, 1}
+                    {1, 1, 1, 1, 1}
                 };
                 break;
             case H:
