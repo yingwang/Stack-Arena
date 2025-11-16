@@ -6,7 +6,7 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Deep space gradient background -->
+    <!-- Brighter space gradient background -->
     <path
         android:pathData="M0,0 L108,0 L108,108 L0,108 Z">
         <aapt:attr name="android:fillColor">
@@ -16,46 +16,59 @@
                 android:startY="0"
                 android:endX="108"
                 android:endY="108"
-                android:startColor="#0A0E27"
-                android:centerColor="#1A1F3A"
-                android:endColor="#0F0A1F"/>
+                android:startColor="#1A2350"
+                android:centerColor="#2A3560"
+                android:endColor="#1A1A40"/>
         </aapt:attr>
     </path>
 
-    <!-- Subtle stars effect -->
+    <!-- Brighter stars effect -->
     <path
-        android:fillColor="#33FFFFFF"
+        android:fillColor="#66FFFFFF"
         android:pathData="M15,15 L16,15 L16,16 L15,16 Z"/>
     <path
-        android:fillColor="#22FFFFFF"
+        android:fillColor="#55FFFFFF"
         android:pathData="M25,30 L26,30 L26,31 L25,31 Z"/>
     <path
-        android:fillColor="#44FFFFFF"
+        android:fillColor="#77FFFFFF"
         android:pathData="M82,22 L83,22 L83,23 L82,23 Z"/>
     <path
-        android:fillColor="#33FFFFFF"
+        android:fillColor="#66FFFFFF"
         android:pathData="M70,45 L71,45 L71,46 L70,46 Z"/>
     <path
-        android:fillColor="#22FFFFFF"
+        android:fillColor="#55FFFFFF"
         android:pathData="M88,60 L89,60 L89,61 L88,61 Z"/>
     <path
-        android:fillColor="#55FFFFFF"
+        android:fillColor="#88FFFFFF"
         android:pathData="M20,75 L21,75 L21,76 L20,76 Z"/>
     <path
-        android:fillColor="#33FFFFFF"
+        android:fillColor="#66FFFFFF"
         android:pathData="M55,85 L56,85 L56,86 L55,86 Z"/>
     <path
-        android:fillColor="#44FFFFFF"
+        android:fillColor="#77FFFFFF"
         android:pathData="M92,40 L93,40 L93,41 L92,41 Z"/>
-
-    <!-- Neon grid lines in background -->
+    <!-- More bright stars -->
     <path
-        android:strokeColor="#1100D9FF"
-        android:strokeWidth="0.5"
+        android:fillColor="#99FFFFFF"
+        android:pathData="M40,20 L41,20 L41,21 L40,21 Z"/>
+    <path
+        android:fillColor="#77FFFFFF"
+        android:pathData="M65,55 L66,55 L66,56 L65,56 Z"/>
+    <path
+        android:fillColor="#88FFFFFF"
+        android:pathData="M30,90 L31,90 L31,91 L30,91 Z"/>
+    <path
+        android:fillColor="#66FFFFFF"
+        android:pathData="M80,75 L81,75 L81,76 L80,76 Z"/>
+
+    <!-- Brighter neon grid lines in background -->
+    <path
+        android:strokeColor="#3300D9FF"
+        android:strokeWidth="0.8"
         android:fillColor="@android:color/transparent"
         android:pathData="M0,36 L108,36 M0,72 L108,72 M36,0 L36,108 M72,0 L72,108"/>
 
-    <!-- Subtle radial glow from center -->
+    <!-- Stronger radial glow from center -->
     <path
         android:pathData="M0,0 L108,0 L108,108 L0,108 Z">
         <aapt:attr name="android:fillColor">
@@ -64,8 +77,8 @@
                 android:centerX="54"
                 android:centerY="54"
                 android:gradientRadius="70"
-                android:startColor="#1500D9FF"
-                android:centerColor="#0AB026FF"
+                android:startColor="#3500D9FF"
+                android:centerColor="#22B026FF"
                 android:endColor="#00000000"/>
         </aapt:attr>
     </path>
