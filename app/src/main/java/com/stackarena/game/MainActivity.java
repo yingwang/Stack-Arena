@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -37,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
 
     private int selectedSpeed = 1; // Default speed (lowest)
     private int selectedStartingLines = 0; // Default starting lines
+
+    // For hold-to-accelerate down button
+    private Handler downHandler = new Handler();
+    private Runnable downRunnable;
+    private boolean isDownPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,9 +144,47 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
             if (game != null) game.rotate();
         });
 
-        btnDrop.setOnClickListener(v -> {
-            if (game != null) game.moveDown();
+        // Hold-to-accelerate down button
+        btnDrop.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // Start accelerating when button is pressed
+                    isDownPressed = true;
+                    startDownAcceleration();
+                    v.setPressed(true);
+                    return true;
+
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    // Stop accelerating when button is released
+                    isDownPressed = false;
+                    stopDownAcceleration();
+                    v.setPressed(false);
+                    return true;
+            }
+            return false;
         });
+    }
+
+    private void startDownAcceleration() {
+        downRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (game != null && isDownPressed && !game.isGameOver() && !game.isPaused()) {
+                    game.moveDown();
+                }
+                if (isDownPressed) {
+                    downHandler.postDelayed(this, 50); // Move down every 50ms when held
+                }
+            }
+        };
+        downHandler.post(downRunnable);
+    }
+
+    private void stopDownAcceleration() {
+        if (downRunnable != null) {
+            downHandler.removeCallbacks(downRunnable);
+        }
     }
 
     private void setupGameMenuButtons() {

@@ -14,7 +14,7 @@
         android:textColor="#FFD700"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:layout_marginBottom="16dp"
         android:shadowColor="#000000"
         android:shadowDx="3"
