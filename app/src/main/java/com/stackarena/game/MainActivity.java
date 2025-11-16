@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
     private Handler downHandler = new Handler();
     private Runnable downRunnable;
     private boolean isDownPressed = false;
+    private int downPressCount = 0; // Count how long button has been held
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
                 case MotionEvent.ACTION_DOWN:
                     // Start accelerating when button is pressed
                     isDownPressed = true;
+                    downPressCount = 0;
                     startDownAcceleration();
                     v.setPressed(true);
                     return true;
@@ -158,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
                 case MotionEvent.ACTION_CANCEL:
                     // Stop accelerating when button is released
                     isDownPressed = false;
+                    downPressCount = 0;
                     stopDownAcceleration();
                     v.setPressed(false);
                     return true;
@@ -172,9 +175,24 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
             public void run() {
                 if (game != null && isDownPressed && !game.isGameOver() && !game.isPaused()) {
                     game.moveDown();
+                    downPressCount++;
                 }
                 if (isDownPressed) {
-                    downHandler.postDelayed(this, 50); // Move down every 50ms when held
+                    // Accelerate: start at 100ms, gradually decrease to 20ms
+                    // After 10 presses: 100ms -> 80ms
+                    // After 20 presses: 80ms -> 50ms
+                    // After 30+ presses: 50ms -> 20ms (max speed)
+                    int delay;
+                    if (downPressCount < 10) {
+                        delay = 100; // Initial speed
+                    } else if (downPressCount < 20) {
+                        delay = 80; // Faster
+                    } else if (downPressCount < 30) {
+                        delay = 50; // Even faster
+                    } else {
+                        delay = 20; // Maximum speed
+                    }
+                    downHandler.postDelayed(this, delay);
                 }
             }
         };
@@ -424,6 +442,16 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
         // Resume music when app comes back, but only if game is not paused
         if (soundManager != null && game != null && !game.isPaused() && !game.isGameOver()) {
             soundManager.resumeMusic();
+        }
+
+        // Update pause button text to reflect current game state
+        if (game != null && gameLayout.getVisibility() == View.VISIBLE) {
+            Button btnPause = findViewById(R.id.btnPause);
+            if (game.isPaused()) {
+                btnPause.setText(R.string.resume);
+            } else {
+                btnPause.setText(R.string.pause);
+            }
         }
     }
 

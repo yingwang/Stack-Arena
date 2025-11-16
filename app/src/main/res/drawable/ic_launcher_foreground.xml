@@ -6,178 +6,192 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Outer space glow rings - centered -->
+    <!-- Large outer glow for impact -->
     <path
-        android:fillColor="#1500D9FF"
-        android:pathData="M54,25 C38,25 25,38 25,54 C25,70 38,83 54,83 C70,83 83,70 83,54 C83,38 70,25 54,25 Z"/>
+        android:fillColor="#1000D9FF"
+        android:pathData="M54,10 C30,10 10,30 10,54 C10,78 30,98 54,98 C78,98 98,78 98,54 C98,30 78,10 54,10 Z"/>
     <path
-        android:fillColor="#22B026FF"
-        android:pathData="M54,29 C40,29 29,40 29,54 C29,68 40,79 54,79 C68,79 79,68 79,54 C79,40 68,29 54,29 Z"/>
+        android:fillColor="#1800D9FF"
+        android:pathData="M54,15 C33,15 15,33 15,54 C15,75 33,93 54,93 C75,93 93,75 93,54 C93,33 75,15 54,15 Z"/>
+    <path
+        android:fillColor="#28B026FF"
+        android:pathData="M54,20 C36,20 20,36 20,54 C20,72 36,88 54,88 C72,88 88,72 88,54 C88,36 72,20 54,20 Z"/>
 
-    <!-- Central neon blocks with strong glow - centered -->
+    <!-- Central neon blocks with strong glow - larger and centered -->
     <group
-        android:translateX="34"
-        android:translateY="39">
+        android:translateX="30"
+        android:translateY="35">
 
-        <!-- Neon cyan block with glow -->
+        <!-- Neon cyan block with glow - larger -->
         <path
-            android:fillColor="#5500D9FF"
-            android:pathData="M-2,0 L14,0 L14,16 L-2,16 Z"/>
-        <path android:pathData="M0,2 L12,2 L12,14 L0,14 Z">
+            android:fillColor="#6600D9FF"
+            android:pathData="M-3,0 L16,0 L16,19 L-3,19 Z"/>
+        <path android:pathData="M0,2 L13,2 L13,17 L0,17 Z">
             <aapt:attr name="android:fillColor">
                 <gradient
                     android:type="linear"
                     android:startX="0"
                     android:startY="2"
-                    android:endX="12"
-                    android:endY="14"
+                    android:endX="13"
+                    android:endY="17"
                     android:startColor="#00D9FF"
                     android:endColor="#0088CC"/>
             </aapt:attr>
         </path>
         <path
-            android:fillColor="#80FFFFFF"
-            android:pathData="M1,3 L11,3 L11,5 L1,5 Z"/>
+            android:fillColor="#90FFFFFF"
+            android:pathData="M1,3 L12,3 L12,6 L1,6 Z"/>
 
-        <!-- Neon purple block with glow -->
+        <!-- Neon purple block with glow - larger -->
         <path
-            android:fillColor="#55B026FF"
-            android:pathData="M10,0 L26,0 L26,16 L10,16 Z"/>
-        <path android:pathData="M12,2 L24,2 L24,14 L12,14 Z">
+            android:fillColor="#66B026FF"
+            android:pathData="M11,0 L30,0 L30,19 L11,19 Z"/>
+        <path android:pathData="M14,2 L27,2 L27,17 L14,17 Z">
             <aapt:attr name="android:fillColor">
                 <gradient
                     android:type="linear"
-                    android:startX="12"
+                    android:startX="14"
                     android:startY="2"
-                    android:endX="24"
-                    android:endY="14"
+                    android:endX="27"
+                    android:endY="17"
                     android:startColor="#B026FF"
                     android:endColor="#7700CC"/>
             </aapt:attr>
         </path>
         <path
             android:fillColor="#AA8080FF"
-            android:pathData="M13,3 L23,3 L23,5 L13,5 Z"/>
+            android:pathData="M15,3 L26,3 L26,6 L15,6 Z"/>
 
-        <!-- Neon pink block with glow -->
+        <!-- Neon pink block with glow - larger -->
         <path
-            android:fillColor="#55FF006E"
-            android:pathData="M22,0 L38,0 L38,16 L22,16 Z"/>
-        <path android:pathData="M24,2 L36,2 L36,14 L24,14 Z">
+            android:fillColor="#66FF006E"
+            android:pathData="M25,0 L44,0 L44,19 L25,19 Z"/>
+        <path android:pathData="M28,2 L41,2 L41,17 L28,17 Z">
             <aapt:attr name="android:fillColor">
                 <gradient
                     android:type="linear"
-                    android:startX="24"
+                    android:startX="28"
                     android:startY="2"
-                    android:endX="36"
-                    android:endY="14"
+                    android:endX="41"
+                    android:endY="17"
                     android:startColor="#FF006E"
                     android:endColor="#CC0055"/>
             </aapt:attr>
         </path>
         <path
             android:fillColor="#AAFFAAFF"
-            android:pathData="M25,3 L35,3 L35,5 L25,5 Z"/>
+            android:pathData="M29,3 L40,3 L40,6 L29,6 Z"/>
 
         <!-- Second row -->
-        <!-- Neon green block with glow -->
+        <!-- Neon green block with glow - larger -->
         <path
-            android:fillColor="#5539FF14"
-            android:pathData="M-2,14 L14,14 L14,30 L-2,30 Z"/>
-        <path android:pathData="M0,16 L12,16 L12,28 L0,28 Z">
+            android:fillColor="#6639FF14"
+            android:pathData="M-3,17 L16,17 L16,36 L-3,36 Z"/>
+        <path android:pathData="M0,19 L13,19 L13,34 L0,34 Z">
             <aapt:attr name="android:fillColor">
                 <gradient
                     android:type="linear"
                     android:startX="0"
-                    android:startY="16"
-                    android:endX="12"
-                    android:endY="28"
+                    android:startY="19"
+                    android:endX="13"
+                    android:endY="34"
                     android:startColor="#39FF14"
                     android:endColor="#22CC00"/>
             </aapt:attr>
         </path>
         <path
-            android:fillColor="#88FFAA"
-            android:pathData="M1,17 L11,17 L11,19 L1,19 Z"/>
+            android:fillColor="#90FFAA"
+            android:pathData="M1,20 L12,20 L12,23 L1,23 Z"/>
 
-        <!-- Neon orange block with glow -->
+        <!-- Neon orange block with glow - larger -->
         <path
-            android:fillColor="#55FF9E00"
-            android:pathData="M10,14 L26,14 L26,30 L10,30 Z"/>
-        <path android:pathData="M12,16 L24,16 L24,28 L12,28 Z">
+            android:fillColor="#66FF9E00"
+            android:pathData="M11,17 L30,17 L30,36 L11,36 Z"/>
+        <path android:pathData="M14,19 L27,19 L27,34 L14,34 Z">
             <aapt:attr name="android:fillColor">
                 <gradient
                     android:type="linear"
-                    android:startX="12"
-                    android:startY="16"
-                    android:endX="24"
-                    android:endY="28"
+                    android:startX="14"
+                    android:startY="19"
+                    android:endX="27"
+                    android:endY="34"
                     android:startColor="#FF9E00"
                     android:endColor="#CC7700"/>
             </aapt:attr>
         </path>
         <path
             android:fillColor="#AAFFDD99"
-            android:pathData="M13,17 L23,17 L23,19 L13,19 Z"/>
+            android:pathData="M15,20 L26,20 L26,23 L15,23 Z"/>
 
-        <!-- Electric cyan block with glow -->
+        <!-- Electric cyan block with glow - larger -->
         <path
-            android:fillColor="#5500FFF5"
-            android:pathData="M22,14 L38,14 L38,30 L22,30 Z"/>
-        <path android:pathData="M24,16 L36,16 L36,28 L24,28 Z">
+            android:fillColor="#6600FFF5"
+            android:pathData="M25,17 L44,17 L44,36 L25,36 Z"/>
+        <path android:pathData="M28,19 L41,19 L41,34 L28,34 Z">
             <aapt:attr name="android:fillColor">
                 <gradient
                     android:type="linear"
-                    android:startX="24"
-                    android:startY="16"
-                    android:endX="36"
-                    android:endY="28"
+                    android:startX="28"
+                    android:startY="19"
+                    android:endX="41"
+                    android:endY="34"
                     android:startColor="#00FFF5"
                     android:endColor="#00CCBB"/>
             </aapt:attr>
         </path>
         <path
-            android:fillColor="#88FFFFFF"
-            android:pathData="M25,17 L35,17 L35,19 L25,19 Z"/>
+            android:fillColor="#90FFFFFF"
+            android:pathData="M29,20 L40,20 L40,23 L29,23 Z"/>
 
-        <!-- Glowing borders -->
+        <!-- Glowing borders - adjusted for larger blocks -->
         <path
             android:strokeColor="#00D9FF"
-            android:strokeWidth="1"
+            android:strokeWidth="1.5"
             android:fillColor="@android:color/transparent"
-            android:pathData="M0,2 L12,2 L12,14 L0,14 Z"/>
+            android:pathData="M0,2 L13,2 L13,17 L0,17 Z"/>
         <path
             android:strokeColor="#B026FF"
-            android:strokeWidth="1"
+            android:strokeWidth="1.5"
             android:fillColor="@android:color/transparent"
-            android:pathData="M12,2 L24,2 L24,14 L12,14 Z"/>
+            android:pathData="M14,2 L27,2 L27,17 L14,17 Z"/>
         <path
             android:strokeColor="#FF006E"
-            android:strokeWidth="1"
+            android:strokeWidth="1.5"
             android:fillColor="@android:color/transparent"
-            android:pathData="M24,2 L36,2 L36,14 L24,14 Z"/>
+            android:pathData="M28,2 L41,2 L41,17 L28,17 Z"/>
         <path
             android:strokeColor="#39FF14"
-            android:strokeWidth="1"
+            android:strokeWidth="1.5"
             android:fillColor="@android:color/transparent"
-            android:pathData="M0,16 L12,16 L12,28 L0,28 Z"/>
+            android:pathData="M0,19 L13,19 L13,34 L0,34 Z"/>
         <path
             android:strokeColor="#FF9E00"
-            android:strokeWidth="1"
+            android:strokeWidth="1.5"
             android:fillColor="@android:color/transparent"
-            android:pathData="M12,16 L24,16 L24,28 L12,28 Z"/>
+            android:pathData="M14,19 L27,19 L27,34 L14,34 Z"/>
         <path
             android:strokeColor="#00FFF5"
-            android:strokeWidth="1"
+            android:strokeWidth="1.5"
             android:fillColor="@android:color/transparent"
-            android:pathData="M24,16 L36,16 L36,28 L24,28 Z"/>
+            android:pathData="M28,19 L41,19 L41,34 L28,34 Z"/>
     </group>
 
-    <!-- Outer circuit pattern -->
+    <!-- Enhanced outer circuit pattern with more sci-fi elements -->
     <path
-        android:strokeColor="#2200D9FF"
-        android:strokeWidth="1"
+        android:strokeColor="#4400D9FF"
+        android:strokeWidth="2"
         android:fillColor="@android:color/transparent"
-        android:pathData="M20,35 L20,30 L25,30 M88,35 L88,30 L83,30 M20,73 L20,78 L25,78 M88,73 L88,78 L83,78"/>
+        android:pathData="M15,25 L15,15 L25,15 M93,25 L93,15 L83,15 M15,83 L15,93 L25,93 M93,83 L93,93 L83,93"/>
+    <path
+        android:strokeColor="#44B026FF"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M12,30 L12,12 L30,12 M96,30 L96,12 L78,12 M12,78 L12,96 L30,96 M96,78 L96,96 L78,96"/>
+
+    <!-- Corner accent dots -->
+    <circle android:cx="15" android:cy="15" android:r="2.5" android:fillColor="#6600D9FF"/>
+    <circle android:cx="93" android:cy="15" android:r="2.5" android:fillColor="#66B026FF"/>
+    <circle android:cx="15" android:cy="93" android:r="2.5" android:fillColor="#66FF006E"/>
+    <circle android:cx="93" android:cy="93" android:r="2.5" android:fillColor="#6600FFF5"/>
 
 </vector>
