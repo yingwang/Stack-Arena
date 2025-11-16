@@ -165,7 +165,7 @@
         </LinearLayout>
 
         <!-- Game View -->
-        <com.tetris.game.TetrisView
+        <com.stackarena.game.TetrisView
             android:id="@+id/tetrisView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
