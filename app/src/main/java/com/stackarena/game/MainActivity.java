@@ -139,13 +139,14 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
         });
 
         btnDrop.setOnClickListener(v -> {
-            if (game != null) game.drop();
+            if (game != null) game.moveDown();
         });
     }
 
     private void setupGameMenuButtons() {
         Button btnPause = findViewById(R.id.btnPause);
         Button btnNewGame = findViewById(R.id.btnNewGame);
+        Button btnHighScores = findViewById(R.id.btnHighScores);
 
         btnPause.setOnClickListener(v -> {
             if (game != null) {
@@ -161,6 +162,11 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
 
         btnNewGame.setOnClickListener(v -> {
             showSpeedSelection();
+        });
+
+        btnHighScores.setOnClickListener(v -> {
+            Intent intent = new Intent(this, HighScoresActivity.class);
+            startActivity(intent);
         });
     }
 

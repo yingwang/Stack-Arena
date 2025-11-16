@@ -17,6 +17,7 @@
     <string name="right">Right</string>
     <string name="rotate">Rotate</string>
     <string name="drop">Drop</string>
+    <string name="down">Down</string>
     <string name="high_scores">High Scores</string>
     <string name="high_scores_title">HIGH SCORES</string>
     <string name="no_scores">No high scores yet. Start playing!</string>

@@ -184,27 +184,45 @@
 
             <Button
                 android:id="@+id/btnNewGame"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="48dp"
                 android:text="@string/new_game"
                 android:textColor="@color/neon_purple"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.05"
-                android:paddingHorizontal="24dp"
-                android:layout_marginEnd="8dp"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="4dp"
                 android:background="@drawable/button_background_enhanced"/>
 
             <Button
                 android:id="@+id/btnPause"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="48dp"
                 android:text="@string/pause"
                 android:textColor="@color/neon_cyan"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.05"
-                android:paddingHorizontal="24dp"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/button_background_enhanced"/>
+
+            <Button
+                android:id="@+id/btnHighScores"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:text="@string/high_scores"
+                android:textColor="@color/neon_pink"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="4dp"
                 android:background="@drawable/button_background_enhanced"/>
         </LinearLayout>
 
@@ -267,7 +285,7 @@
                 android:padding="18dp"
                 android:background="@drawable/button_background_enhanced"/>
 
-            <!-- Drop button - close to right button -->
+            <!-- Down button - close to right button -->
             <ImageButton
                 android:id="@+id/btnDrop"
                 android:layout_width="80dp"
@@ -277,7 +295,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:src="@drawable/ic_drop"
-                android:contentDescription="@string/drop"
+                android:contentDescription="@string/down"
                 android:scaleType="centerInside"
                 android:padding="18dp"
                 android:background="@drawable/button_background_enhanced"/>
