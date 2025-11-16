@@ -105,8 +105,8 @@ public class TetrisView extends View {
     }
 
     private void initStars() {
-        // Create shooting stars/meteors
-        for (int i = 0; i < 15; i++) {
+        // Create more stars for a dense space atmosphere
+        for (int i = 0; i < 200; i++) {
             stars.add(new Star());
         }
     }
@@ -131,103 +131,76 @@ public class TetrisView extends View {
         postDelayed(this::updateStars, 30); // 30ms = ~33fps
     }
 
-    // Inner class for shooting stars (meteors)
+    // Inner class for stars
     private class Star {
         float x, y;
-        float speedX, speedY;
-        float length;
-        float thickness;
+        float speed;
+        float size;
         int alpha;
         int color;
-        long creationTime;
-        long lifetime;
 
         Star() {
             reset();
         }
 
         void reset() {
-            // Start from random position (usually top or left side)
-            if (random.nextBoolean()) {
-                x = random.nextFloat() * getWidth();
-                y = -50;
+            x = random.nextFloat() * getWidth();
+            y = random.nextFloat() * getHeight();
+
+            // Varied speeds for depth effect - some fast (close), some slow (far)
+            float speedType = random.nextFloat();
+            if (speedType < 0.7f) {
+                // Most stars move slowly (distant stars)
+                speed = 0.3f + random.nextFloat() * 0.8f; // 0.3 to 1.1
+                size = 1 + random.nextFloat() * 1.5f; // 1 to 2.5 pixels
+                alpha = 80 + random.nextInt(100); // 80-180 (dimmer, more distant)
+            } else if (speedType < 0.9f) {
+                // Some medium speed stars
+                speed = 1.1f + random.nextFloat() * 1.2f; // 1.1 to 2.3
+                size = 1.5f + random.nextFloat() * 2f; // 1.5 to 3.5 pixels
+                alpha = 150 + random.nextInt(80); // 150-230 (brighter)
             } else {
-                x = -50;
-                y = random.nextFloat() * getHeight() * 0.5f; // Upper half
+                // Few fast-moving "shooting stars"
+                speed = 3f + random.nextFloat() * 3f; // 3 to 6 pixels (fast!)
+                size = 2f + random.nextFloat() * 2.5f; // 2 to 4.5 pixels
+                alpha = 200 + random.nextInt(56); // 200-255 (very bright)
             }
 
-            // Diagonal movement (down-right direction mostly)
-            float angle = (float) Math.toRadians(30 + random.nextFloat() * 60); // 30-90 degrees
-            float speed = 8f + random.nextFloat() * 12f; // Fast meteors
-            speedX = (float) Math.cos(angle) * speed;
-            speedY = (float) Math.sin(angle) * speed;
-
-            // Meteor tail length and thickness
-            length = 40 + random.nextFloat() * 80; // 40-120 pixels tail
-            thickness = 2f + random.nextFloat() * 3f; // 2-5 pixels thick
-            alpha = 180 + random.nextInt(76); // 180-255 (bright)
-
-            // Neon colors for meteors
-            int colorChoice = random.nextInt(6);
+            // Random neon space colors with more variety
+            int colorChoice = random.nextInt(8);
             switch (colorChoice) {
                 case 0: color = Color.parseColor("#00D9FF"); break; // Neon Cyan
                 case 1: color = Color.parseColor("#B026FF"); break; // Neon Purple
                 case 2: color = Color.parseColor("#FF006E"); break; // Neon Pink
-                case 3: color = Color.parseColor("#00FFF5"); break; // Electric Cyan
-                case 4: color = Color.parseColor("#FFFFFF"); break; // White
-                default: color = Color.parseColor("#FFD700"); break; // Gold
+                case 3: color = Color.parseColor("#39FF14"); break; // Neon Green
+                case 4: color = Color.parseColor("#00FFF5"); break; // Electric Cyan
+                case 5: color = Color.parseColor("#FF9E00"); break; // Neon Orange
+                case 6: color = Color.parseColor("#FFFFFF"); break; // White
+                default: color = Color.parseColor("#E0E0FF"); break; // Pale Blue
             }
-
-            creationTime = System.currentTimeMillis();
-            lifetime = 2000 + random.nextInt(3000); // 2-5 seconds
         }
 
         void update() {
-            x += speedX;
-            y += speedY;
-
-            // Reset when off screen or lifetime expired
-            if (x > getWidth() + 100 || y > getHeight() + 100 ||
-                System.currentTimeMillis() - creationTime > lifetime) {
-                reset();
+            y += speed;
+            // Reset when off screen
+            if (y > getHeight()) {
+                x = random.nextFloat() * getWidth();
+                y = -10;
             }
         }
 
         void draw(Canvas canvas) {
-            // Calculate tail end position
-            float tailX = x - (speedX / Math.abs(speedX + speedY)) * length;
-            float tailY = y - (speedY / Math.abs(speedX + speedY)) * length;
+            starPaint.setColor(color);
+            starPaint.setAlpha(alpha);
 
-            // Draw meteor tail with gradient effect
-            starPaint.setStrokeWidth(thickness);
-            starPaint.setStyle(Paint.Style.STROKE);
-            starPaint.setStrokeCap(Paint.Cap.ROUND);
-
-            // Draw multiple tail segments for glow effect
-            for (int i = 0; i < 3; i++) {
-                float segmentAlpha = alpha * (1f - i * 0.3f);
-                float segmentThickness = thickness * (1f - i * 0.2f);
-
-                starPaint.setColor(color);
-                starPaint.setAlpha((int) segmentAlpha);
-                starPaint.setStrokeWidth(segmentThickness);
-
-                if (i == 0) {
-                    // Main tail with glow
-                    starPaint.setShadowLayer(thickness * 2, 0, 0, color);
-                } else {
-                    starPaint.clearShadowLayer();
-                }
-
-                canvas.drawLine(x, y, tailX, tailY, starPaint);
+            // Draw glow effect for larger/brighter stars
+            if (size > 2f && alpha > 180) {
+                starPaint.setShadowLayer(size * 2, 0, 0, color);
+            } else {
+                starPaint.clearShadowLayer();
             }
 
-            // Draw bright head
-            starPaint.setStyle(Paint.Style.FILL);
-            starPaint.setColor(Color.WHITE);
-            starPaint.setAlpha(alpha);
-            starPaint.setShadowLayer(thickness * 3, 0, 0, color);
-            canvas.drawCircle(x, y, thickness * 1.5f, starPaint);
+            canvas.drawCircle(x, y, size, starPaint);
         }
     }
 
