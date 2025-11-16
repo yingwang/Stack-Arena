@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Dark Tech Theme Colors -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,6 +8,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Neon Tech Colors -->
+    <color name="neon_blue">#00D9FF</color>
+    <color name="neon_purple">#B026FF</color>
+    <color name="neon_pink">#FF006E</color>
+    <color name="neon_cyan">#00FFF5</color>
+    <color name="neon_green">#39FF14</color>
+    <color name="neon_orange">#FF9E00</color>
+
+    <!-- Dark Backgrounds -->
+    <color name="dark_bg_primary">#0A0E27</color>
+    <color name="dark_bg_secondary">#1A1F3A</color>
+    <color name="dark_bg_tertiary">#2A2F4A</color>
+
+    <!-- Semi-transparent overlays -->
+    <color name="overlay_dark">#AA000000</color>
+    <color name="overlay_glow">#33FFFFFF</color>
+
+    <!-- Legacy -->
     <color name="game_background">#FF222222</color>
     <color name="grid_line">#FF444444</color>
 </resources>

@@ -21,22 +21,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_settings"
-            android:textColor="#FFD700"
-            android:textSize="32sp"
+            android:textColor="@color/neon_cyan"
+            android:textSize="36sp"
             android:textStyle="bold"
             android:layout_marginBottom="40dp"
-            android:shadowColor="#000000"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="4"/>
+            android:shadowColor="@color/neon_blue"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="20"
+            android:letterSpacing="0.15"/>
 
         <!-- Speed Setting -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/speed_label"
-            android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textColor="@color/neon_purple"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -44,14 +47,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5"
-            android:textColor="#4CAF50"
-            android:textSize="48sp"
+            android:textColor="@color/neon_cyan"
+            android:textSize="56sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
-            android:shadowColor="#000000"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="3"/>
+            android:shadowColor="@color/neon_blue"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="30"/>
 
         <SeekBar
             android:id="@+id/seekBarSpeed"
@@ -59,8 +62,8 @@
             android:layout_height="wrap_content"
             android:max="8"
             android:progress="4"
-            android:progressTint="#4CAF50"
-            android:thumbTint="#4CAF50"
+            android:progressTint="@color/neon_blue"
+            android:thumbTint="@color/neon_cyan"
             android:layout_marginBottom="40dp"/>
 
         <!-- Starting Lines Setting -->
@@ -68,8 +71,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/starting_lines_label"
-            android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textColor="@color/neon_purple"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -77,14 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:textColor="#4CAF50"
-            android:textSize="48sp"
+            android:textColor="@color/neon_cyan"
+            android:textSize="56sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
-            android:shadowColor="#000000"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="3"/>
+            android:shadowColor="@color/neon_blue"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="30"/>
 
         <SeekBar
             android:id="@+id/seekBarLines"
@@ -92,8 +97,8 @@
             android:layout_height="wrap_content"
             android:max="9"
             android:progress="0"
-            android:progressTint="#4CAF50"
-            android:thumbTint="#4CAF50"
+            android:progressTint="@color/neon_blue"
+            android:thumbTint="@color/neon_cyan"
             android:layout_marginBottom="50dp"/>
 
         <Button
@@ -101,8 +106,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start_game"
-            android:textSize="24sp"
+            android:textColor="@color/neon_cyan"
+            android:textSize="26sp"
             android:textStyle="bold"
+            android:letterSpacing="0.1"
             android:paddingHorizontal="60dp"
             android:paddingVertical="16dp"
             android:background="@drawable/button_background_enhanced"/>
@@ -133,16 +140,17 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
                 android:text="@string/score"
-                android:textColor="#FFD700"
-                android:textSize="18sp"
+                android:textColor="@color/neon_cyan"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                android:letterSpacing="0.05"
                 android:gravity="center"
                 android:padding="12dp"
                 android:background="@drawable/score_background"
-                android:shadowColor="#000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="3"/>
+                android:shadowColor="@color/neon_blue"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="15"/>
 
             <TextView
                 android:id="@+id/tvLevel"
@@ -152,16 +160,17 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:text="@string/level"
-                android:textColor="#FFD700"
-                android:textSize="18sp"
+                android:textColor="@color/neon_purple"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                android:letterSpacing="0.05"
                 android:gravity="center"
                 android:padding="12dp"
                 android:background="@drawable/score_background"
-                android:shadowColor="#000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="3"/>
+                android:shadowColor="@color/neon_pink"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="15"/>
         </LinearLayout>
 
         <!-- Game View -->

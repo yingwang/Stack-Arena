@@ -95,25 +95,25 @@ public class TetrisPiece {
     private void initializeColor() {
         switch (type) {
             case A:
-                color = Color.CYAN;
+                color = Color.rgb(0, 217, 255); // Neon Cyan
                 break;
             case B:
-                color = Color.YELLOW;
+                color = Color.rgb(57, 255, 20); // Neon Green
                 break;
             case C:
-                color = Color.MAGENTA;
+                color = Color.rgb(176, 38, 255); // Neon Purple
                 break;
             case D:
-                color = Color.GREEN;
+                color = Color.rgb(255, 0, 110); // Neon Pink
                 break;
             case E:
-                color = Color.RED;
+                color = Color.rgb(255, 158, 0); // Neon Orange
                 break;
             case F:
-                color = Color.BLUE;
+                color = Color.rgb(0, 255, 245); // Electric Cyan
                 break;
             case G:
-                color = Color.rgb(255, 165, 0); // Orange
+                color = Color.rgb(255, 20, 147); // Deep Pink
                 break;
         }
     }
