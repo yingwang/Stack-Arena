@@ -5,7 +5,7 @@ A professional falling blocks puzzle game implementation for Android with retro 
 ## Features
 
 ### Game Features
-- **Classic block-stacking gameplay** with 8 unique pentomino pieces (5-block shapes)
+- **Classic block-stacking gameplay** with 8 unique pieces (mix of 3, 4, and 5-block shapes)
 - **Customizable difficulty**: Choose speed levels 1-9 (1 = slowest, 9 = fastest)
 - **Starting lines configuration**: Start with 0-9 pre-filled lines for added challenge
 - **Level progression**: Automatic level advancement based on score
