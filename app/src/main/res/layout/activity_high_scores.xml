@@ -28,17 +28,17 @@
 
         <Button
             android:id="@+id/btnClose"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:text="✕"
-            android:textColor="@color/neon_cyan"
-            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
             android:textStyle="bold"
-            android:paddingHorizontal="20dp"
-            android:background="@drawable/button_background_enhanced"/>
+            android:padding="0dp"
+            android:background="@drawable/close_button_background"/>
     </RelativeLayout>
 
     <ScrollView

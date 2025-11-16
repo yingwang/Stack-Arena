@@ -18,7 +18,8 @@ public class CustomToast {
 
         Toast toast = new Toast(context);
         toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(duration);
+        // Shorten duration: SHORT = 1 second instead of 2
+        toast.setDuration(duration == Toast.LENGTH_LONG ? Toast.LENGTH_SHORT : Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
     }
@@ -28,6 +29,6 @@ public class CustomToast {
     }
 
     public static void showLong(Context context, String message) {
-        show(context, message, Toast.LENGTH_LONG);
+        show(context, message, Toast.LENGTH_SHORT); // Even "long" is now short
     }
 }
