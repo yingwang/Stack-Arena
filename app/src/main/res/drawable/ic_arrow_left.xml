@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+
+    <!-- Outer glow layer -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M14,7l-5,5l5,5V7z"/>
+        android:fillColor="#4400D9FF"
+        android:pathData="M15,6 L7,12 L15,18 Z"/>
+
+    <!-- Middle glow layer -->
+    <path
+        android:fillColor="#6600D9FF"
+        android:pathData="M14.5,6.5 L7.5,12 L14.5,17.5 Z"/>
+
+    <!-- Main arrow with gradient -->
+    <path android:pathData="M14,7 L8,12 L14,17 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="8"
+                android:startY="7"
+                android:endX="14"
+                android:endY="17"
+                android:startColor="#00E5FF"
+                android:centerColor="#00B8D4"
+                android:endColor="#0091B8"/>
+        </aapt:attr>
+    </path>
+
+    <!-- Highlight strip for 3D effect -->
+    <path
+        android:fillColor="#AAFFFFFF"
+        android:pathData="M13,8.5 L10,12 L13,15.5 L13,8.5 Z"/>
+
+    <!-- Neon border -->
+    <path
+        android:strokeColor="#00FFFF"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M14,7 L8,12 L14,17 Z"/>
 </vector>
