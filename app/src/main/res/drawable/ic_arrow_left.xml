@@ -6,24 +6,22 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
 
-    <!-- Outer glow layer -->
+    <!-- Outer glow layers for depth -->
     <path
-        android:fillColor="#4400D9FF"
-        android:pathData="M15,6 L7,12 L15,18 Z"/>
-
-    <!-- Middle glow layer -->
+        android:fillColor="#3300D9FF"
+        android:pathData="M17,5 L5,12 L17,19 Z"/>
     <path
-        android:fillColor="#6600D9FF"
-        android:pathData="M14.5,6.5 L7.5,12 L14.5,17.5 Z"/>
+        android:fillColor="#5500D9FF"
+        android:pathData="M16,6 L6,12 L16,18 Z"/>
 
-    <!-- Main arrow with gradient -->
-    <path android:pathData="M14,7 L8,12 L14,17 Z">
+    <!-- Main thick arrow body with gradient -->
+    <path android:pathData="M15,7 L7,12 L15,17 Z">
         <aapt:attr name="android:fillColor">
             <gradient
                 android:type="linear"
-                android:startX="8"
+                android:startX="7"
                 android:startY="7"
-                android:endX="14"
+                android:endX="15"
                 android:endY="17"
                 android:startColor="#00E5FF"
                 android:centerColor="#00B8D4"
@@ -31,15 +29,20 @@
         </aapt:attr>
     </path>
 
-    <!-- Highlight strip for 3D effect -->
+    <!-- Bright highlight for 3D effect -->
     <path
-        android:fillColor="#AAFFFFFF"
-        android:pathData="M13,8.5 L10,12 L13,15.5 L13,8.5 Z"/>
+        android:fillColor="#CCFFFFFF"
+        android:pathData="M14,9 L10,12 L14,15 L14,9 Z"/>
 
-    <!-- Neon border -->
+    <!-- Additional inner glow -->
+    <path
+        android:fillColor="#4400FFFF"
+        android:pathData="M13,10 L9.5,12 L13,14 Z"/>
+
+    <!-- Thick neon border with strong glow -->
     <path
         android:strokeColor="#00FFFF"
-        android:strokeWidth="1.5"
+        android:strokeWidth="2.5"
         android:fillColor="@android:color/transparent"
-        android:pathData="M14,7 L8,12 L14,17 Z"/>
+        android:pathData="M15,7 L7,12 L15,17 Z"/>
 </vector>

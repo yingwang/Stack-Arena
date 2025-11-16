@@ -232,13 +232,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginBottom="56dp"/>
+            android:layout_marginBottom="0dp"/>
 
         <!-- Control Buttons -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp">
+            android:layout_marginTop="-40dp"
+            android:paddingBottom="16dp">
 
             <!-- Left button - far left -->
             <ImageButton

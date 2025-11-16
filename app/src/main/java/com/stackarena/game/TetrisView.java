@@ -54,8 +54,8 @@ public class TetrisView extends View {
 
         gridPaint = new Paint();
         gridPaint.setStyle(Paint.Style.STROKE);
-        gridPaint.setColor(Color.parseColor("#333333"));
-        gridPaint.setStrokeWidth(2);
+        gridPaint.setColor(Color.parseColor("#1A1A2E"));
+        gridPaint.setStrokeWidth(1.5f);
         gridPaint.setAntiAlias(true);
 
         highlightPaint = new Paint();
@@ -437,20 +437,24 @@ public class TetrisView extends View {
     }
 
     private void draw3DBlock(Canvas canvas, float x, float y, float size, int color) {
-        float inset = 3;
-        float highlightInset = 5;
+        float inset = 2;
+        float highlightInset = 4;
 
-        // Draw shadow (bottom-right)
-        canvas.drawRect(x + size - 4, y + 4, x + size, y + size, shadowPaint);
-        canvas.drawRect(x + 4, y + size - 4, x + size, y + size, shadowPaint);
+        // Draw outer neon glow
+        Paint glowPaint = new Paint();
+        glowPaint.setStyle(Paint.Style.FILL);
+        glowPaint.setAntiAlias(true);
+        glowPaint.setColor(color);
+        glowPaint.setAlpha(60);
+        canvas.drawRect(x, y, x + size, y + size, glowPaint);
 
-        // Main block with gradient
+        // Main solid block with enhanced gradient
         int baseColor = color;
-        int lightColor = lightenColor(baseColor, 0.3f);
-        int darkColor = darkenColor(baseColor, 0.2f);
+        int lightColor = lightenColor(baseColor, 0.4f);
+        int darkColor = darkenColor(baseColor, 0.15f);
 
         LinearGradient gradient = new LinearGradient(
-            x, y, x, y + size,
+            x, y, x + size, y + size,
             lightColor, darkColor,
             Shader.TileMode.CLAMP
         );
@@ -458,39 +462,48 @@ public class TetrisView extends View {
         canvas.drawRect(x + inset, y + inset, x + size - inset, y + size - inset, paint);
         paint.setShader(null);
 
-        // Highlight (top-left)
-        highlightPaint.setColor(lightenColor(baseColor, 0.5f));
+        // Bright top-left highlight for 3D effect
+        highlightPaint.setColor(Color.argb(200, 255, 255, 255));
         canvas.drawRect(
             x + highlightInset,
             y + highlightInset,
             x + size - highlightInset,
-            y + highlightInset + 2,
+            y + highlightInset + 2.5f,
             highlightPaint
         );
         canvas.drawRect(
             x + highlightInset,
             y + highlightInset,
-            x + highlightInset + 2,
+            x + highlightInset + 2.5f,
             y + size - highlightInset,
             highlightPaint
         );
 
-        // Dark edge (bottom-right)
-        highlightPaint.setColor(darkenColor(baseColor, 0.4f));
+        // Dark bottom-right edge for depth
+        highlightPaint.setColor(darkenColor(baseColor, 0.5f));
         canvas.drawRect(
             x + highlightInset,
-            y + size - highlightInset - 2,
+            y + size - highlightInset - 2.5f,
             x + size - highlightInset,
             y + size - highlightInset,
             highlightPaint
         );
         canvas.drawRect(
-            x + size - highlightInset - 2,
+            x + size - highlightInset - 2.5f,
             y + highlightInset,
             x + size - highlightInset,
             y + size - highlightInset,
             highlightPaint
         );
+
+        // Neon border with glow effect
+        Paint neonBorderPaint = new Paint();
+        neonBorderPaint.setStyle(Paint.Style.STROKE);
+        neonBorderPaint.setStrokeWidth(2.5f);
+        neonBorderPaint.setAntiAlias(true);
+        neonBorderPaint.setColor(lightenColor(baseColor, 0.6f));
+        neonBorderPaint.setShadowLayer(4, 0, 0, baseColor);
+        canvas.drawRect(x + inset, y + inset, x + size - inset, y + size - inset, neonBorderPaint);
     }
 
     private int lightenColor(int color, float factor) {

@@ -8,43 +8,43 @@
 
     <!-- Outer glow for top arrow -->
     <path
-        android:fillColor="#44B026FF"
-        android:pathData="M6,3 L12,9 L18,3 Z"/>
+        android:fillColor="#33B026FF"
+        android:pathData="M5,2 L12,10 L19,2 Z"/>
 
-    <!-- Main top arrow with gradient -->
-    <path android:pathData="M7,4 L12,8 L17,4 Z">
+    <!-- Main top arrow with pink gradient -->
+    <path android:pathData="M6,3 L12,9 L18,3 Z">
         <aapt:attr name="android:fillColor">
             <gradient
                 android:type="linear"
-                android:startX="7"
-                android:startY="4"
-                android:endX="17"
-                android:endY="8"
+                android:startX="6"
+                android:startY="3"
+                android:endX="18"
+                android:endY="9"
                 android:startColor="#FF006E"
-                android:centerColor="#CC0055"
-                android:endColor="#99003F"/>
+                android:centerColor="#DD0055"
+                android:endColor="#BB0044"/>
         </aapt:attr>
     </path>
 
     <!-- Highlight for top arrow -->
     <path
-        android:fillColor="#AAFFFFFF"
-        android:pathData="M11,4.5 L12,5.5 L13,4.5 Z"/>
+        android:fillColor="#CCFFFFFF"
+        android:pathData="M10,4 L12,6.5 L14,4 Z"/>
 
     <!-- Outer glow for bottom arrow -->
     <path
-        android:fillColor="#4400D9FF"
-        android:pathData="M6,9 L12,15 L18,9 Z"/>
+        android:fillColor="#3300D9FF"
+        android:pathData="M5,9 L12,17 L19,9 Z"/>
 
-    <!-- Main bottom arrow with gradient -->
-    <path android:pathData="M7,10 L12,14 L17,10 Z">
+    <!-- Main bottom arrow with cyan gradient -->
+    <path android:pathData="M6,10 L12,16 L18,10 Z">
         <aapt:attr name="android:fillColor">
             <gradient
                 android:type="linear"
-                android:startX="7"
+                android:startX="6"
                 android:startY="10"
-                android:endX="17"
-                android:endY="14"
+                android:endX="18"
+                android:endY="16"
                 android:startColor="#00E5FF"
                 android:centerColor="#00B8D4"
                 android:endColor="#0091B8"/>
@@ -53,30 +53,32 @@
 
     <!-- Highlight for bottom arrow -->
     <path
-        android:fillColor="#AAFFFFFF"
-        android:pathData="M11,10.5 L12,11.5 L13,10.5 Z"/>
+        android:fillColor="#CCFFFFFF"
+        android:pathData="M10,11 L12,13.5 L14,11 Z"/>
 
-    <!-- Additional motion lines for speed effect -->
+    <!-- Motion lines for speed effect (thicker) -->
     <path
-        android:strokeColor="#66FF006E"
-        android:strokeWidth="1.5"
+        android:strokeColor="#88FF006E"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
         android:fillColor="@android:color/transparent"
-        android:pathData="M9,16 L12,19 L15,16"/>
+        android:pathData="M8,18 L12,22 L16,18"/>
     <path
-        android:strokeColor="#4400D9FF"
-        android:strokeWidth="1.5"
+        android:strokeColor="#6600D9FF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
         android:fillColor="@android:color/transparent"
-        android:pathData="M10,20 L12,22 L14,20"/>
+        android:pathData="M9,20 L12,23 L15,20"/>
 
-    <!-- Neon borders -->
+    <!-- Thick neon borders -->
     <path
         android:strokeColor="#FF88AA"
-        android:strokeWidth="1.2"
+        android:strokeWidth="2"
         android:fillColor="@android:color/transparent"
-        android:pathData="M7,4 L12,8 L17,4 Z"/>
+        android:pathData="M6,3 L12,9 L18,3 Z"/>
     <path
         android:strokeColor="#00FFFF"
-        android:strokeWidth="1.2"
+        android:strokeWidth="2"
         android:fillColor="@android:color/transparent"
-        android:pathData="M7,10 L12,14 L17,10 Z"/>
+        android:pathData="M6,10 L12,16 L18,10 Z"/>
 </vector>
