@@ -5,7 +5,7 @@ A professional falling blocks puzzle game implementation for Android with retro 
 ## Features
 
 ### Game Features
-- **Original block-stacking gameplay** with 8 unique pieces (2-5 blocks, all different from Tetris shapes)
+- **Original block-stacking gameplay** with 7 unique pieces (1×2-block, 1×3-block, 5×5-block shapes)
 - **Customizable difficulty**: Choose speed levels 1-9 (1 = slowest, 9 = fastest)
 - **Starting lines configuration**: Start with 0-9 pre-filled lines for added challenge
 - **Level progression**: Automatic level advancement based on score

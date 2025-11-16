@@ -4,7 +4,7 @@ import android.graphics.Color;
 
 public class TetrisPiece {
     public enum PieceType {
-        A, B, C, D, E, F, G, H
+        A, B, C, D, E, F, G
     }
 
     private PieceType type;
@@ -24,72 +24,65 @@ public class TetrisPiece {
         switch (type) {
             case A:
                 // XX
+                // 2-block line
+                shape = new int[][]{
+                    {1, 1}
+                };
+                break;
+            case B:
+                // XX
                 //  X
-                // 3-block L shape
+                // 3-block L
                 shape = new int[][]{
                     {1, 1},
                     {0, 1}
                 };
                 break;
-            case B:
-                // XX
-                // 2-block line (small)
-                shape = new int[][]{
-                    {1, 1}
-                };
-                break;
             case C:
-                // X
                 // XX
-                // 3-block corner shape
+                // XX
+                //  X
+                // 5-block
                 shape = new int[][]{
-                    {1, 0},
-                    {1, 1}
+                    {1, 1},
+                    {1, 1},
+                    {0, 1}
                 };
                 break;
             case D:
-                // X
-                // X
                 // XX
-                // 4-block tall L shape
+                //  X
+                // XX
+                // 5-block zigzag
                 shape = new int[][]{
-                    {1, 0},
-                    {1, 0},
+                    {1, 1},
+                    {0, 1},
                     {1, 1}
                 };
                 break;
             case E:
-                //  X
-                // XX
-                // X
-                // 4-block zigzag variant
-                shape = new int[][]{
-                    {0, 1},
-                    {1, 1},
-                    {1, 0}
-                };
-                break;
-            case F:
-                // XXX
-                //  X
-                // 4-block inverted T
-                shape = new int[][]{
-                    {1, 1, 1},
-                    {0, 1, 0}
-                };
-                break;
-            case G:
                 // XXXXX
                 // 5-block line
                 shape = new int[][]{
                     {1, 1, 1, 1, 1}
                 };
                 break;
-            case H:
+            case F:
+                // XXX
+                //   X
+                //   X
+                // 5-block inverted L
+                shape = new int[][]{
+                    {1, 1, 1},
+                    {0, 0, 1},
+                    {0, 0, 1}
+                };
+                break;
+            case G:
                 //  X
                 // XXX
                 //  X
-                // 5-block plus/cross shape
+                // 5-block plus/cross
                 shape = new int[][]{
                     {0, 1, 0},
                     {1, 1, 1},
@@ -121,9 +114,6 @@ public class TetrisPiece {
                 break;
             case G:
                 color = Color.rgb(255, 165, 0); // Orange
-                break;
-            case H:
-                color = Color.rgb(255, 20, 147); // Deep Pink
                 break;
         }
     }
