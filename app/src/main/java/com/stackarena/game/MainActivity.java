@@ -1,0 +1,336 @@
+package com.stackarena.game;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity implements TetrisGame.GameListener {
+    private TetrisView tetrisView;
+    private TetrisGame game;
+    private Handler gameHandler;
+    private Runnable gameRunnable;
+    private boolean isGameRunning = false;
+
+    private LinearLayout speedSelectionLayout;
+    private LinearLayout gameLayout;
+    private TextView tvScore;
+    private TextView tvLevel;
+    private HighScoreManager scoreManager;
+    private SoundManager soundManager;
+
+    private int selectedSpeed = 5; // Default speed
+    private int selectedStartingLines = 0; // Default starting lines
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        initializeViews();
+        setupSeekBars();
+        setupStartGameButton();
+        setupGameControls();
+    }
+
+    private void initializeViews() {
+        speedSelectionLayout = findViewById(R.id.speedSelectionLayout);
+        gameLayout = findViewById(R.id.gameLayout);
+        tetrisView = findViewById(R.id.tetrisView);
+        tvScore = findViewById(R.id.tvScore);
+        tvLevel = findViewById(R.id.tvLevel);
+        scoreManager = new HighScoreManager(this);
+        soundManager = new SoundManager(this);
+    }
+
+    private void setupSeekBars() {
+        SeekBar seekBarSpeed = findViewById(R.id.seekBarSpeed);
+        SeekBar seekBarLines = findViewById(R.id.seekBarLines);
+        TextView tvSpeedValue = findViewById(R.id.tvSpeedValue);
+        TextView tvLinesValue = findViewById(R.id.tvLinesValue);
+
+        seekBarSpeed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                selectedSpeed = progress + 1; // 0-8 becomes 1-9
+                tvSpeedValue.setText(String.valueOf(selectedSpeed));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        seekBarLines.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                selectedStartingLines = progress; // 0-9
+                tvLinesValue.setText(String.valueOf(selectedStartingLines));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+    }
+
+    private void setupStartGameButton() {
+        Button btnStartGame = findViewById(R.id.btnStartGame);
+        btnStartGame.setOnClickListener(v -> startGame());
+    }
+
+    private void setupGameControls() {
+        ImageButton btnLeft = findViewById(R.id.btnLeft);
+        ImageButton btnRight = findViewById(R.id.btnRight);
+        ImageButton btnRotate = findViewById(R.id.btnRotate);
+        ImageButton btnDrop = findViewById(R.id.btnDrop);
+
+        btnLeft.setOnClickListener(v -> {
+            if (game != null) game.moveLeft();
+        });
+
+        btnRight.setOnClickListener(v -> {
+            if (game != null) game.moveRight();
+        });
+
+        btnRotate.setOnClickListener(v -> {
+            if (game != null) game.rotate();
+        });
+
+        btnDrop.setOnClickListener(v -> {
+            if (game != null) game.drop();
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.game_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem pauseItem = menu.findItem(R.id.menu_pause);
+        if (game != null && game.isPaused()) {
+            pauseItem.setTitle(R.string.resume);
+            pauseItem.setIcon(android.R.drawable.ic_media_play);
+        } else {
+            pauseItem.setTitle(R.string.pause);
+            pauseItem.setIcon(android.R.drawable.ic_media_pause);
+        }
+
+        MenuItem muteItem = menu.findItem(R.id.menu_mute);
+        if (soundManager != null && soundManager.isMuted()) {
+            muteItem.setTitle(R.string.unmute);
+        } else {
+            muteItem.setTitle(R.string.mute);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_new_game) {
+            showSpeedSelection();
+            return true;
+        } else if (id == R.id.menu_pause) {
+            togglePause();
+            return true;
+        } else if (id == R.id.menu_high_scores) {
+            Intent intent = new Intent(this, HighScoresActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.menu_mute) {
+            if (soundManager != null) {
+                soundManager.toggleMute();
+                invalidateOptionsMenu();
+                String message = soundManager.isMuted() ? "Sound Muted" : "Sound Enabled";
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void startGame() {
+        speedSelectionLayout.setVisibility(View.GONE);
+        gameLayout.setVisibility(View.VISIBLE);
+        startNewGame();
+    }
+
+    private void startNewGame() {
+        if (isGameRunning) {
+            stopGame();
+        }
+
+        game = new TetrisGame(selectedSpeed, soundManager, selectedStartingLines);
+        game.setGameListener(this);
+        tetrisView.setGame(game);
+
+        updateScore(game.getScore());
+        updateLevel(game.getLevel());
+
+        startGameLoop();
+
+        // Start background music
+        if (soundManager != null) {
+            soundManager.startBackgroundMusic();
+        }
+    }
+
+    private void startGameLoop() {
+        isGameRunning = true;
+        gameHandler = new Handler();
+        gameRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (game != null && !game.isGameOver() && !game.isPaused()) {
+                    game.moveDown();
+                }
+                if (isGameRunning) {
+                    // Speed determines delay: speed 1 = slowest (1000ms), speed 9 = fastest (~200ms)
+                    int delay = Math.max(200, 1100 - (selectedSpeed * 100));
+                    gameHandler.postDelayed(this, delay);
+                }
+            }
+        };
+        gameHandler.post(gameRunnable);
+    }
+
+    private void stopGame() {
+        isGameRunning = false;
+        if (gameHandler != null && gameRunnable != null) {
+            gameHandler.removeCallbacks(gameRunnable);
+        }
+        // Stop background music
+        if (soundManager != null) {
+            soundManager.stopBackgroundMusic();
+        }
+    }
+
+    private void togglePause() {
+        if (game != null) {
+            game.togglePause();
+            invalidateOptionsMenu(); // Update menu to change Pause/Resume text
+            if (game.isPaused()) {
+                Toast.makeText(this, "Game Paused", Toast.LENGTH_SHORT).show();
+                if (soundManager != null) {
+                    soundManager.pauseMusic();
+                }
+            } else {
+                Toast.makeText(this, "Game Resumed", Toast.LENGTH_SHORT).show();
+                if (soundManager != null) {
+                    soundManager.resumeMusic();
+                }
+            }
+        }
+    }
+
+    private void showSpeedSelection() {
+        stopGame();
+        if (soundManager != null) {
+            soundManager.stopBackgroundMusic();
+        }
+        gameLayout.setVisibility(View.GONE);
+        speedSelectionLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onScoreChanged(int score) {
+        runOnUiThread(() -> updateScore(score));
+    }
+
+    @Override
+    public void onLevelChanged(int level) {
+        runOnUiThread(() -> updateLevel(level));
+    }
+
+    @Override
+    public void onGameOver() {
+        runOnUiThread(() -> {
+            stopGame();
+            tetrisView.refresh();
+
+            int finalScore = game.getScore();
+            int finalLevel = game.getLevel();
+
+            // Save score to high scores
+            scoreManager.addScore(finalScore, finalLevel);
+            int rank = scoreManager.getRank(finalScore);
+
+            String message = getString(R.string.game_over_message, finalScore, rank);
+            if (scoreManager.isHighScore(finalScore)) {
+                message = getString(R.string.new_high_score) + "\n" + message;
+            }
+
+            Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+        });
+    }
+
+    @Override
+    public void onBoardChanged() {
+        runOnUiThread(() -> tetrisView.refresh());
+    }
+
+    @Override
+    public void onLinesClearing(int[] lines) {
+        runOnUiThread(() -> tetrisView.startLineClearAnimation(lines));
+    }
+
+    private void updateScore(int score) {
+        tvScore.setText(getString(R.string.score, score));
+    }
+
+    private void updateLevel(int level) {
+        tvLevel.setText(getString(R.string.level, level));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (game != null && !game.isGameOver()) {
+            game.setPaused(true);
+            invalidateOptionsMenu();
+        }
+        // Pause music when app goes to background
+        if (soundManager != null) {
+            soundManager.pauseMusic();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Resume music when app comes back, but only if game is not paused
+        if (soundManager != null && game != null && !game.isPaused() && !game.isGameOver()) {
+            soundManager.resumeMusic();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopGame();
+        if (soundManager != null) {
+            soundManager.release();
+        }
+    }
+}

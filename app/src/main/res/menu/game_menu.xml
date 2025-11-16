@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_new_game"
+        android:title="@string/new_game"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_pause"
+        android:title="@string/pause"
+        android:icon="@android:drawable/ic_media_pause"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_high_scores"
+        android:title="@string/high_scores"
+        android:icon="@android:drawable/star_on"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_mute"
+        android:title="@string/mute"
+        android:icon="@android:drawable/ic_lock_silent_mode_off"
+        app:showAsAction="ifRoom"/>
+
+</menu>
