@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
                 soundManager.toggleMute();
                 invalidateOptionsMenu();
                 String message = soundManager.isMuted() ? "Sound Muted" : "Sound Enabled";
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                CustomToast.showShort(this, message);
             }
             return true;
         }
@@ -351,12 +351,12 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
             game.togglePause();
             invalidateOptionsMenu(); // Update menu to change Pause/Resume text
             if (game.isPaused()) {
-                Toast.makeText(this, "Game Paused", Toast.LENGTH_SHORT).show();
+                CustomToast.showShort(this, "Game Paused");
                 if (soundManager != null) {
                     soundManager.pauseMusic();
                 }
             } else {
-                Toast.makeText(this, "Game Resumed", Toast.LENGTH_SHORT).show();
+                CustomToast.showShort(this, "Game Resumed");
                 if (soundManager != null) {
                     soundManager.resumeMusic();
                 }
@@ -401,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
                 message = getString(R.string.new_high_score) + "\n" + message;
             }
 
-            Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            CustomToast.showLong(MainActivity.this, message);
         });
     }
 

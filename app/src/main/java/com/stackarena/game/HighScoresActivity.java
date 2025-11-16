@@ -2,6 +2,7 @@ package com.stackarena.game;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,10 @@ public class HighScoresActivity extends AppCompatActivity {
 
         scoresContainer = findViewById(R.id.scoresContainer);
         scoreManager = new HighScoreManager(this);
+
+        // Setup close button
+        Button btnClose = findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(v -> finish());
 
         displayHighScores();
     }
