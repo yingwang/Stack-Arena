@@ -94,17 +94,14 @@ public class TetrisView extends View {
         starPaint.setAntiAlias(true);
         stars = new ArrayList<>();
         random = new Random();
-        initStars();
 
         // Initialize nebulas (background space clouds)
         nebulaPaint = new Paint();
         nebulaPaint.setAntiAlias(true);
         nebulaPaint.setStyle(Paint.Style.FILL);
         nebulas = new ArrayList<>();
-        initNebulas();
 
-        // Start animation
-        post(this::updateStars);
+        // Stars and nebulas will be initialized in onSizeChanged when view dimensions are known
     }
 
     private void initStars() {
@@ -296,6 +293,14 @@ public class TetrisView extends View {
 
             offsetX = (w - blockSize * board.getCols()) / 2;
             offsetY = (h - blockSize * board.getRows()) / 2;
+        }
+
+        // Initialize stars and nebulas now that we have view dimensions
+        if (w > 0 && h > 0 && stars.isEmpty()) {
+            initStars();
+            initNebulas();
+            // Start animation
+            post(this::updateStars);
         }
     }
 
