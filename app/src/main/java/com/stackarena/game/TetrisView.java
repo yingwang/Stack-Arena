@@ -32,8 +32,10 @@ public class TetrisView extends View {
 
     // Star field animation
     private List<Star> stars;
+    private List<Nebula> nebulas;
     private Random random;
     private Paint starPaint;
+    private Paint nebulaPaint;
 
     public TetrisView(Context context) {
         super(context);
@@ -94,14 +96,28 @@ public class TetrisView extends View {
         random = new Random();
         initStars();
 
+        // Initialize nebulas (background space clouds)
+        nebulaPaint = new Paint();
+        nebulaPaint.setAntiAlias(true);
+        nebulaPaint.setStyle(Paint.Style.FILL);
+        nebulas = new ArrayList<>();
+        initNebulas();
+
         // Start animation
         post(this::updateStars);
     }
 
     private void initStars() {
-        // Create initial stars across the entire view
-        for (int i = 0; i < 100; i++) {
+        // Create more stars for a dense space atmosphere
+        for (int i = 0; i < 200; i++) {
             stars.add(new Star());
+        }
+    }
+
+    private void initNebulas() {
+        // Create a few large, slowly drifting nebula clouds
+        for (int i = 0; i < 3; i++) {
+            nebulas.add(new Nebula());
         }
     }
 
@@ -109,6 +125,10 @@ public class TetrisView extends View {
         // Update star positions
         for (Star star : stars) {
             star.update();
+        }
+        // Update nebula positions
+        for (Nebula nebula : nebulas) {
+            nebula.update();
         }
         invalidate();
         postDelayed(this::updateStars, 30); // 30ms = ~33fps
@@ -129,18 +149,37 @@ public class TetrisView extends View {
         void reset() {
             x = random.nextFloat() * getWidth();
             y = random.nextFloat() * getHeight();
-            speed = 0.5f + random.nextFloat() * 1.5f; // 0.5 to 2.0 pixels per frame
-            size = 1 + random.nextFloat() * 2; // 1 to 3 pixels
-            alpha = 100 + random.nextInt(156); // 100-255
 
-            // Random neon colors
-            int colorChoice = random.nextInt(5);
+            // Varied speeds for depth effect - some fast (close), some slow (far)
+            float speedType = random.nextFloat();
+            if (speedType < 0.7f) {
+                // Most stars move slowly (distant stars)
+                speed = 0.3f + random.nextFloat() * 0.8f; // 0.3 to 1.1
+                size = 1 + random.nextFloat() * 1.5f; // 1 to 2.5 pixels
+                alpha = 80 + random.nextInt(100); // 80-180 (dimmer, more distant)
+            } else if (speedType < 0.9f) {
+                // Some medium speed stars
+                speed = 1.1f + random.nextFloat() * 1.2f; // 1.1 to 2.3
+                size = 1.5f + random.nextFloat() * 2f; // 1.5 to 3.5 pixels
+                alpha = 150 + random.nextInt(80); // 150-230 (brighter)
+            } else {
+                // Few fast-moving "shooting stars"
+                speed = 3f + random.nextFloat() * 3f; // 3 to 6 pixels (fast!)
+                size = 2f + random.nextFloat() * 2.5f; // 2 to 4.5 pixels
+                alpha = 200 + random.nextInt(56); // 200-255 (very bright)
+            }
+
+            // Random neon space colors with more variety
+            int colorChoice = random.nextInt(8);
             switch (colorChoice) {
-                case 0: color = Color.parseColor("#00D9FF"); break; // Cyan
-                case 1: color = Color.parseColor("#B026FF"); break; // Purple
-                case 2: color = Color.parseColor("#FF006E"); break; // Pink
-                case 3: color = Color.parseColor("#39FF14"); break; // Green
-                default: color = Color.parseColor("#FFFFFF"); break; // White
+                case 0: color = Color.parseColor("#00D9FF"); break; // Neon Cyan
+                case 1: color = Color.parseColor("#B026FF"); break; // Neon Purple
+                case 2: color = Color.parseColor("#FF006E"); break; // Neon Pink
+                case 3: color = Color.parseColor("#39FF14"); break; // Neon Green
+                case 4: color = Color.parseColor("#00FFF5"); break; // Electric Cyan
+                case 5: color = Color.parseColor("#FF9E00"); break; // Neon Orange
+                case 6: color = Color.parseColor("#FFFFFF"); break; // White
+                default: color = Color.parseColor("#E0E0FF"); break; // Pale Blue
             }
         }
 
@@ -156,7 +195,61 @@ public class TetrisView extends View {
         void draw(Canvas canvas) {
             starPaint.setColor(color);
             starPaint.setAlpha(alpha);
+
+            // Draw glow effect for larger/brighter stars
+            if (size > 2f && alpha > 180) {
+                starPaint.setShadowLayer(size * 2, 0, 0, color);
+            } else {
+                starPaint.clearShadowLayer();
+            }
+
             canvas.drawCircle(x, y, size, starPaint);
+        }
+    }
+
+    // Inner class for nebula clouds (background space atmosphere)
+    private class Nebula {
+        float x, y;
+        float speed;
+        float radius;
+        int color;
+        int alpha;
+
+        Nebula() {
+            reset();
+        }
+
+        void reset() {
+            x = random.nextFloat() * getWidth();
+            y = random.nextFloat() * getHeight();
+            speed = 0.1f + random.nextFloat() * 0.3f; // Very slow drift
+            radius = 80 + random.nextFloat() * 120; // Large radius (80-200)
+            alpha = 15 + random.nextInt(25); // Very transparent (15-40)
+
+            // Nebula colors - purple, cyan, pink tones
+            int colorChoice = random.nextInt(4);
+            switch (colorChoice) {
+                case 0: color = Color.parseColor("#B026FF"); break; // Purple
+                case 1: color = Color.parseColor("#00D9FF"); break; // Cyan
+                case 2: color = Color.parseColor("#FF006E"); break; // Pink
+                default: color = Color.parseColor("#00FFF5"); break; // Electric Cyan
+            }
+        }
+
+        void update() {
+            y += speed;
+            // Reset when off screen
+            if (y - radius > getHeight()) {
+                x = random.nextFloat() * getWidth();
+                y = -radius;
+            }
+        }
+
+        void draw(Canvas canvas) {
+            nebulaPaint.setColor(color);
+            nebulaPaint.setAlpha(alpha);
+            nebulaPaint.setShadowLayer(radius * 0.8f, 0, 0, color);
+            canvas.drawCircle(x, y, radius, nebulaPaint);
         }
     }
 
@@ -215,17 +308,28 @@ public class TetrisView extends View {
         // Draw background
         canvas.drawColor(Color.parseColor("#0F1419"));
 
-        // Draw animated star field (outside game area only)
         TetrisBoard board = game.getBoard();
         float boardLeft = offsetX;
         float boardTop = offsetY;
         float boardRight = offsetX + blockSize * board.getCols();
         float boardBottom = offsetY + blockSize * board.getRows();
 
+        // Draw nebula clouds in background (except when centered on game board)
+        for (Nebula nebula : nebulas) {
+            // Nebulas are very transparent, so only skip if center is in game board
+            boolean centerInGameBoard = (nebula.x >= boardLeft && nebula.x <= boardRight &&
+                                        nebula.y >= boardTop && nebula.y <= boardBottom);
+            if (!centerInGameBoard) {
+                nebula.draw(canvas);
+            }
+        }
+
+        // Draw animated star field across entire background (except game board area)
         for (Star star : stars) {
-            // Only draw stars outside the game board area
-            if (star.x < boardLeft || star.x > boardRight ||
-                star.y < boardTop || star.y > boardBottom) {
+            // Draw stars everywhere except inside the game board rectangle
+            boolean inGameBoard = (star.x >= boardLeft && star.x <= boardRight &&
+                                  star.y >= boardTop && star.y <= boardBottom);
+            if (!inGameBoard) {
                 star.draw(canvas);
             }
         }
