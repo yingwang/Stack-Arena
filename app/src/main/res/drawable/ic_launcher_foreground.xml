@@ -6,18 +6,18 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Outer space glow rings -->
+    <!-- Outer space glow rings - centered -->
     <path
         android:fillColor="#1500D9FF"
-        android:pathData="M54,20 C38,20 25,33 25,49 C25,65 38,78 54,78 C70,78 83,65 83,49 C83,33 70,20 54,20 Z"/>
+        android:pathData="M54,25 C38,25 25,38 25,54 C25,70 38,83 54,83 C70,83 83,70 83,54 C83,38 70,25 54,25 Z"/>
     <path
         android:fillColor="#22B026FF"
-        android:pathData="M54,24 C40,24 29,35 29,49 C29,63 40,74 54,74 C68,74 79,63 79,49 C79,35 68,24 54,24 Z"/>
+        android:pathData="M54,29 C40,29 29,40 29,54 C29,68 40,79 54,79 C68,79 79,68 79,54 C79,40 68,29 54,29 Z"/>
 
-    <!-- Central neon blocks with strong glow -->
+    <!-- Central neon blocks with strong glow - centered -->
     <group
         android:translateX="34"
-        android:translateY="29">
+        android:translateY="39">
 
         <!-- Neon cyan block with glow -->
         <path

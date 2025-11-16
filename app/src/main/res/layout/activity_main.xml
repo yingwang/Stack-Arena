@@ -129,6 +129,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
+            android:layout_marginTop="36dp"
             android:layout_marginBottom="8dp"
             android:padding="8dp">
 
@@ -171,6 +172,40 @@
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="15"/>
+        </LinearLayout>
+
+        <!-- Game Control Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnPause"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="@string/pause"
+                android:textColor="@color/neon_cyan"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/button_background_enhanced"/>
+
+            <Button
+                android:id="@+id/btnNewGame"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="@string/new_game"
+                android:textColor="@color/neon_purple"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="24dp"
+                android:background="@drawable/button_background_enhanced"/>
         </LinearLayout>
 
         <!-- Game View -->

@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
         setupSeekBars();
         setupStartGameButton();
         setupGameControls();
+        setupGameMenuButtons();
     }
 
     private void initializeViews() {
@@ -142,6 +143,27 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
         });
     }
 
+    private void setupGameMenuButtons() {
+        Button btnPause = findViewById(R.id.btnPause);
+        Button btnNewGame = findViewById(R.id.btnNewGame);
+
+        btnPause.setOnClickListener(v -> {
+            if (game != null) {
+                togglePause();
+                // Update button text
+                if (game.isPaused()) {
+                    btnPause.setText(R.string.resume);
+                } else {
+                    btnPause.setText(R.string.pause);
+                }
+            }
+        });
+
+        btnNewGame.setOnClickListener(v -> {
+            showSpeedSelection();
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.game_menu, menu);
@@ -213,6 +235,10 @@ public class MainActivity extends AppCompatActivity implements TetrisGame.GameLi
 
         updateScore(game.getScore());
         updateLevel(game.getLevel());
+
+        // Reset pause button text
+        Button btnPause = findViewById(R.id.btnPause);
+        btnPause.setText(R.string.pause);
 
         startGameLoop();
 
