@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer glow -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#66FF006E"/>
+            <size android:width="48dp" android:height="48dp"/>
+        </shape>
+    </item>
+
+    <!-- Main circle -->
+    <item
+        android:top="3dp"
+        android:bottom="3dp"
+        android:left="3dp"
+        android:right="3dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="24dp"
+                android:centerColor="#FF006E"
+                android:endColor="#CC0055"/>
+            <stroke
+                android:width="2dp"
+                android:color="#FF88AA"/>
+        </shape>
+    </item>
+</layer-list>

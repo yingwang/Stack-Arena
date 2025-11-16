@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Outer glow for top arrow -->
+    <path
+        android:fillColor="#33B026FF"
+        android:pathData="M5,2 L12,10 L19,2 Z"/>
+
+    <!-- Main top arrow with pink gradient -->
+    <path android:pathData="M6,3 L12,9 L18,3 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="6"
+                android:startY="3"
+                android:endX="18"
+                android:endY="9"
+                android:startColor="#FF006E"
+                android:centerColor="#DD0055"
+                android:endColor="#BB0044"/>
+        </aapt:attr>
+    </path>
+
+    <!-- Highlight for top arrow -->
+    <path
+        android:fillColor="#CCFFFFFF"
+        android:pathData="M10,4 L12,6.5 L14,4 Z"/>
+
+    <!-- Outer glow for bottom arrow -->
+    <path
+        android:fillColor="#3300D9FF"
+        android:pathData="M5,9 L12,17 L19,9 Z"/>
+
+    <!-- Main bottom arrow with cyan gradient -->
+    <path android:pathData="M6,10 L12,16 L18,10 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="6"
+                android:startY="10"
+                android:endX="18"
+                android:endY="16"
+                android:startColor="#00E5FF"
+                android:centerColor="#00B8D4"
+                android:endColor="#0091B8"/>
+        </aapt:attr>
+    </path>
+
+    <!-- Highlight for bottom arrow -->
+    <path
+        android:fillColor="#CCFFFFFF"
+        android:pathData="M10,11 L12,13.5 L14,11 Z"/>
+
+    <!-- Motion lines for speed effect (thicker) -->
+    <path
+        android:strokeColor="#88FF006E"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M8,18 L12,22 L16,18"/>
+    <path
+        android:strokeColor="#6600D9FF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M9,20 L12,23 L15,20"/>
+
+    <!-- Thick neon borders -->
+    <path
+        android:strokeColor="#FF88AA"
+        android:strokeWidth="2"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M6,3 L12,9 L18,3 Z"/>
+    <path
+        android:strokeColor="#00FFFF"
+        android:strokeWidth="2"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M6,10 L12,16 L18,10 Z"/>
+</vector>

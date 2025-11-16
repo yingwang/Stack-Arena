@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/game_background"
+    android:padding="16dp">
+
+    <!-- Game Configuration (visible before game starts) -->
+    <LinearLayout
+        android:id="@+id/speedSelectionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
+        android:paddingHorizontal="32dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_settings"
+            android:textColor="@color/neon_cyan"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp"
+            android:shadowColor="@color/neon_blue"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="20"
+            android:letterSpacing="0.15"/>
+
+        <!-- Speed Setting -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/speed_label"
+            android:textColor="@color/neon_purple"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvSpeedValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/neon_cyan"
+            android:textSize="56sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:shadowColor="@color/neon_blue"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="30"/>
+
+        <SeekBar
+            android:id="@+id/seekBarSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="8"
+            android:progress="0"
+            android:progressTint="@color/neon_blue"
+            android:thumbTint="@color/neon_cyan"
+            android:layout_marginBottom="40dp"/>
+
+        <!-- Starting Lines Setting -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/starting_lines_label"
+            android:textColor="@color/neon_purple"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvLinesValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/neon_cyan"
+            android:textSize="56sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:shadowColor="@color/neon_blue"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="30"/>
+
+        <SeekBar
+            android:id="@+id/seekBarLines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="9"
+            android:progress="0"
+            android:progressTint="@color/neon_blue"
+            android:thumbTint="@color/neon_cyan"
+            android:layout_marginBottom="50dp"/>
+
+        <Button
+            android:id="@+id/btnStartGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_game"
+            android:textColor="@color/neon_cyan"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:paddingHorizontal="60dp"
+            android:paddingVertical="16dp"
+            android:background="@drawable/button_background_enhanced"/>
+    </LinearLayout>
+
+    <!-- Game Layout (visible during game) -->
+    <LinearLayout
+        android:id="@+id/gameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- Score and Level Display -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:text="@string/score"
+                android:textColor="@color/neon_cyan"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:gravity="center"
+                android:padding="12dp"
+                android:background="@drawable/score_background"
+                android:shadowColor="@color/neon_blue"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="15"/>
+
+            <TextView
+                android:id="@+id/tvLevel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:text="@string/level"
+                android:textColor="@color/neon_purple"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:gravity="center"
+                android:padding="12dp"
+                android:background="@drawable/score_background"
+                android:shadowColor="@color/neon_pink"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="15"/>
+        </LinearLayout>
+
+        <!-- Game Control Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnNewGame"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:text="@string/new_game"
+                android:textColor="@color/neon_purple"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/button_background_enhanced"/>
+
+            <Button
+                android:id="@+id/btnPause"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:text="@string/pause"
+                android:textColor="@color/neon_cyan"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/button_background_enhanced"/>
+
+            <Button
+                android:id="@+id/btnHighScores"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:text="@string/high_scores"
+                android:textColor="@color/neon_pink"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/button_background_enhanced"/>
+        </LinearLayout>
+
+        <!-- Game View -->
+        <com.stackarena.game.TetrisView
+            android:id="@+id/tetrisView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Control Buttons -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="48dp">
+
+            <!-- Left button - far left -->
+            <ImageButton
+                android:id="@+id/btnLeft"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/ic_arrow_left"
+                android:contentDescription="@string/left"
+                android:scaleType="centerInside"
+                android:padding="18dp"
+                android:background="@drawable/button_background_enhanced"/>
+
+            <!-- Rotate button - close to left button -->
+            <ImageButton
+                android:id="@+id/btnRotate"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_toEndOf="@id/btnLeft"
+                android:layout_toRightOf="@id/btnLeft"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/ic_rotate"
+                android:contentDescription="@string/rotate"
+                android:scaleType="centerInside"
+                android:padding="18dp"
+                android:background="@drawable/button_background_enhanced"/>
+
+            <!-- Right button - far right -->
+            <ImageButton
+                android:id="@+id/btnRight"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_arrow_right"
+                android:contentDescription="@string/right"
+                android:scaleType="centerInside"
+                android:padding="18dp"
+                android:background="@drawable/button_background_enhanced"/>
+
+            <!-- Down button - close to right button -->
+            <ImageButton
+                android:id="@+id/btnDrop"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_toStartOf="@id/btnRight"
+                android:layout_toLeftOf="@id/btnRight"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/ic_drop"
+                android:contentDescription="@string/down"
+                android:scaleType="centerInside"
+                android:padding="18dp"
+                android:background="@drawable/button_background_enhanced"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stack Arena</string>
+    <string name="game_settings">GAME SETTINGS</string>
+    <string name="speed_label">SPEED</string>
+    <string name="starting_lines_label">STARTING LINES</string>
+    <string name="select_speed">Select Speed (1-9):</string>
+    <string name="starting_lines">Starting Lines (0-9):</string>
+    <string name="start_game">Start Game</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="new_game">New Game</string>
+    <string name="score">Score: %d</string>
+    <string name="level">Level: %d</string>
+    <string name="game_over">Game Over!</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="rotate">Rotate</string>
+    <string name="drop">Drop</string>
+    <string name="down">Down</string>
+    <string name="high_scores">High Scores</string>
+    <string name="high_scores_title">HIGH SCORES</string>
+    <string name="no_scores">No high scores yet. Start playing!</string>
+    <string name="new_high_score">New High Score!</string>
+    <string name="game_over_message">Game Over! Score: %1$d\nRank: #%2$d</string>
+    <string name="mute">Mute Sound</string>
+    <string name="unmute">Unmute Sound</string>
+</resources>
