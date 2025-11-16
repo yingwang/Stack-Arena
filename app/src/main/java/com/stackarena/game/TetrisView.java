@@ -9,6 +9,9 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class TetrisView extends View {
     private TetrisGame game;
@@ -26,6 +29,11 @@ public class TetrisView extends View {
     private int[] clearingLines;
     private int flashAlpha = 0;
     private boolean isFlashing = false;
+
+    // Star field animation
+    private List<Star> stars;
+    private Random random;
+    private Paint starPaint;
 
     public TetrisView(Context context) {
         super(context);
@@ -78,6 +86,78 @@ public class TetrisView extends View {
         ghostPaint.setStrokeWidth(3);
         ghostPaint.setAntiAlias(true);
         ghostPaint.setAlpha(100); // 半透明虚线效果
+
+        // Initialize star field
+        starPaint = new Paint();
+        starPaint.setAntiAlias(true);
+        stars = new ArrayList<>();
+        random = new Random();
+        initStars();
+
+        // Start animation
+        post(this::updateStars);
+    }
+
+    private void initStars() {
+        // Create initial stars across the entire view
+        for (int i = 0; i < 100; i++) {
+            stars.add(new Star());
+        }
+    }
+
+    private void updateStars() {
+        // Update star positions
+        for (Star star : stars) {
+            star.update();
+        }
+        invalidate();
+        postDelayed(this::updateStars, 30); // 30ms = ~33fps
+    }
+
+    // Inner class for stars
+    private class Star {
+        float x, y;
+        float speed;
+        float size;
+        int alpha;
+        int color;
+
+        Star() {
+            reset();
+        }
+
+        void reset() {
+            x = random.nextFloat() * getWidth();
+            y = random.nextFloat() * getHeight();
+            speed = 0.5f + random.nextFloat() * 1.5f; // 0.5 to 2.0 pixels per frame
+            size = 1 + random.nextFloat() * 2; // 1 to 3 pixels
+            alpha = 100 + random.nextInt(156); // 100-255
+
+            // Random neon colors
+            int colorChoice = random.nextInt(5);
+            switch (colorChoice) {
+                case 0: color = Color.parseColor("#00D9FF"); break; // Cyan
+                case 1: color = Color.parseColor("#B026FF"); break; // Purple
+                case 2: color = Color.parseColor("#FF006E"); break; // Pink
+                case 3: color = Color.parseColor("#39FF14"); break; // Green
+                default: color = Color.parseColor("#FFFFFF"); break; // White
+            }
+        }
+
+        void update() {
+            y += speed;
+            // Reset when off screen
+            if (y > getHeight()) {
+                x = random.nextFloat() * getWidth();
+                y = -10;
+            }
+        }
+
+        void draw(Canvas canvas) {
+            starPaint.setColor(color);
+            starPaint.setAlpha(alpha);
+            canvas.drawCircle(x, y, size, starPaint);
+        }
     }
 
     public void startLineClearAnimation(int[] lines) {
@@ -135,11 +215,27 @@ public class TetrisView extends View {
         // Draw background
         canvas.drawColor(Color.parseColor("#0F1419"));
 
+        // Draw animated star field (outside game area only)
         TetrisBoard board = game.getBoard();
+        float boardLeft = offsetX;
+        float boardTop = offsetY;
+        float boardRight = offsetX + blockSize * board.getCols();
+        float boardBottom = offsetY + blockSize * board.getRows();
+
+        for (Star star : stars) {
+            // Only draw stars outside the game board area
+            if (star.x < boardLeft || star.x > boardRight ||
+                star.y < boardTop || star.y > boardBottom) {
+                star.draw(canvas);
+            }
+        }
+
         int[][] boardState = board.getBoard();
         int[][] colors = board.getColors();
 
-        // Draw board border
+        // Draw neon glow border
+        borderPaint.setColor(Color.parseColor("#00D9FF"));
+        borderPaint.setShadowLayer(10, 0, 0, Color.parseColor("#5500D9FF"));
         float borderLeft = offsetX - 4;
         float borderTop = offsetY - 4;
         float borderRight = offsetX + blockSize * board.getCols() + 4;
